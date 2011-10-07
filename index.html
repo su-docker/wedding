@@ -8,24 +8,28 @@
 <script type="text/javascript" src="jquery.center.js"></script>
 <script>
 	positionPoster = function() {
-		var poster = $("#poster");
-		poster.height($(window).height());
-		poster.width($(window).width());
+		var poster = $("#art"),
+			windowHeight = $(window).height(),
+			windowWidth = $(window).width();
+		
+			poster.height($(window).height());
+			poster.width($(window).width());
 		poster.center();
 	}
 
 	$(document).ready(function() {
 		positionPoster();
-		$("#poster").mousedown(function(event) {
+		/*$("#poster").mousedown(function(event) {
 			event.preventDefault();
-		});
+		});*/
 	});
 	$(window).resize(positionPoster);
 </script>
 </head>
 <body>
 <div>
-      <img id="poster" src="images/Poster.jpg" alt="Sudhakar weds Aiswarya" />
+      <img id="art" src="images/art.png" alt="Sudhakar weds Aiswarya" />
+      <div style="z-index:200">Thiruvannamalai</div>
 </div>
 </body>
 </html>
