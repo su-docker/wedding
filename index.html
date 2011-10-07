@@ -4,32 +4,42 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Sudhakar Weds Aiswarya</title>
 <link href="default.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="jquery-1.2.6.min.js"></script>
 <script type="text/javascript" src="jquery.center.js"></script>
+<script type="text/javascript" src="jquery.jparallax.js"></script>
 <script>
-	positionPoster = function() {
-		var poster = $("#art"),
-			windowHeight = $(window).height(),
-			windowWidth = $(window).width();
-		
-			poster.height($(window).height());
-			poster.width($(window).width());
-		poster.center();
+	function fullScreen(element) {
+		element.height($(window).height());
+		element.width($(window).width());
+	}
+	
+	function setUp() {
+		var viewPort = $('#parallax'),
+			art = $('#art');
+		fullScreen(viewPort);
+		fullScreen(art);
+		$(viewPort).jparallax({triggerExposesEdges: true});
+		art.center();
+		art.mousedown(function(event) {
+			event.preventDefault();
+		});
 	}
 
-	$(document).ready(function() {
-		positionPoster();
-		/*$("#poster").mousedown(function(event) {
-			event.preventDefault();
-		});*/
-	});
-	$(window).resize(positionPoster);
+	$(document).ready(setUp);
+	$(window).resize(setUp);
+	
 </script>
 </head>
 <body>
 <div>
-      <img id="art" src="images/art.png" alt="Sudhakar weds Aiswarya" />
-      <div style="z-index:200">Thiruvannamalai</div>
+	<div id="parallax">
+		<div style="width:1400px; height:768px"><img src="images/layer1.jpg" /></div>
+		<div style="width:1600px; height:768px"><img src="images/layer2.png" /></div>
+		<div style="width:2000px; height:768px"><img src="images/layer3.png" /></div>
+	</div>
+	
+    <img id="art" src="images/art.png" alt="Sudhakar weds Aiswarya" />
+      
 </div>
 </body>
 </html>
