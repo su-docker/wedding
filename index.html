@@ -9,17 +9,25 @@
 <script type="text/javascript" src="jquery.center.js"></script>
 <script type="text/javascript" src="jquery.jparallax.js"></script>
 <script>
-	function fullScreen(element) {
-		element.height($(window).height());
-		element.width($(window).width());
+
+	function scale(element, x, y) {
+		var maxHeight = $(window).height(),
+		    maxWidth = $(window).width();
+		element.height(maxHeight + maxHeight * y);
+		element.width(maxWidth + maxWidth * x)
 	}
 	
 	function setUp() {
 		var viewPort = $('#parallax'),
 			art = $('#art');
-		fullScreen(viewPort);
-		fullScreen(art);
-		$(viewPort).jparallax({triggerExposesEdges: true});
+		scale(viewPort,0,0);
+		scale(art,0,0);
+
+		scale($('#lyr1'),0.1, 0.25);
+		scale($('#lyr2'),0.25, 0.25);
+		scale($('#lyr3'),0.4, 0.25);
+
+		$(viewPort).jparallax();
 		art.center();
 		art.mousedown(function(event) {
 			event.preventDefault();
@@ -34,9 +42,9 @@
 <body>
 <div>
 	<div id="parallax">
-		<img style="width:1400px; height:768px" src="images/layer1.jpg" />
-		<img style="width:1600px; height:768px" src="images/layer2.png" />
-		<img style="width:2000px; height:768px" src="images/layer3.png" />
+		<img id="lyr1" style="width:1400px; height:768px" src="images/layer1.jpg" />
+		<img id="lyr2" style="width:1600px; height:768px" src="images/layer2.png" />
+		<img id="lyr3" style="width:2000px; height:768px" src="images/layer3.png" />
 	</div>
 	<img id="art" src="images/art.png" alt="Sudhakar weds Aiswarya" />
 </div>
