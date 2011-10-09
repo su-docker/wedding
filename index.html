@@ -19,21 +19,29 @@
 	
 	function setUp() {
 		var viewPort = $('#parallax'),
-			art = $('#art');
+			art = $('#art'),
+			address = $('#address'),
+			windowWidth = $(window).width(),
+			windowHeight = $(window).height();
+		
 		scale(viewPort,0,0);
 		scale(art,0,0);
-
 		scale($('#lyr1'),0.1, 0.25);
 		scale($('#lyr2'),0.25, 0.25);
 		scale($('#lyr3'),0.4, 0.25);
 
-		$(viewPort).jparallax();
 		art.center();
 		art.mousedown(function(event) {
 			event.preventDefault();
 		});
+		$(viewPort).jparallax();
+		
+		address.width($(window).width() * 0.35);
+		address.height($(window).height() * 0.35);
+		address.css('top', (windowHeight - address.height()) );
+		address.css('left', (windowWidth - address.width()) );
 	}
-
+	
 	$(document).ready(setUp);
 	$(window).resize(setUp);
 	
@@ -47,6 +55,7 @@
 		<img id="lyr3" style="width:2000px; height:768px" src="images/layer3.png" />
 	</div>
 	<img id="art" src="images/art.png" alt="Sudhakar weds Aiswarya" />
+	<img id="address" style="position:absolute" src="images/address.png" />
 </div>
 </body>
 </html>
